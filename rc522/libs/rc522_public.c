@@ -1,7 +1,7 @@
 #include "bcm2835.h"
 #include "rc522_public.h"
-#include "rfid.h"
-#include "rc522.h"
+#include "rfid.c"
+#include "rc522.c"
 
 struct CardIdResult ReadIdByRC522() {
     char statusRfidReader;

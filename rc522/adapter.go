@@ -11,7 +11,7 @@ import (
 )
 
 var (
-  instance = nil //it is singleton, it is not possible to connect multiple rc522 readers to one rpi
+  instance RfidReader = nil //it is singleton, it is not possible to connect multiple rc522 readers to one rpi
 )
 
 type RfidReader struct {}
