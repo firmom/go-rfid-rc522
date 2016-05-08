@@ -11,14 +11,14 @@ import (
 )
 
 var (
-  instance RfidReader = nil //it is singleton, it is not possible to connect multiple rc522 readers to one rpi
+  instance rfid.RfidReader = nil //it is singleton, it is not possible to connect multiple rc522 readers to one rpi
 )
 
 type RfidReader struct {}
 
 func NewRfidReader() (rfid.RfidReader, error) {
   if instance == nil {
-    errCode, err := C.InitRC522RfidReader(void)
+    errCode, err := C.InitRC522RfidReader()
     if err != nil {
       return err
     }
@@ -35,10 +35,10 @@ func (r RfidReader) ReadId() (string, error) {
   if err != nil {
     return err
   }
-  if response.ErrorCode != C.NO_ERROR {
+  if response.errorCode != C.NO_ERROR {
     return "", fmt.Errorf("Read rc522 fail with code: ", errCode)
   }
-  if response.Status != C.NO_TAG_STATUS {
+  if response.status != C.NO_TAG_STATUS {
     return "", nil
   }
   return C.GoString(response.id), nil
