@@ -2,7 +2,7 @@ package rc522
 
 // #cgo CFLAGS: -I${SRCDIR}/libs/
 // #cgo LDFLAGS: -L${SRCDIR}/libs/ -lbcm2835
-// #include <rc522_public.h>
+// #include <rc522_public.c>
 import "C"
 
 import (
