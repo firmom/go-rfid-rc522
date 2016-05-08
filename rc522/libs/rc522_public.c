@@ -4,7 +4,7 @@
 #include "rfid.h"
 #include "rc522.h"
 #include "bcm2835.h"
-#include "public.h"
+#include "rc522_public.h"
 
 
 /*int main(int argc, char** argv) {

@@ -1,9 +1,11 @@
 package rc522
 
-// #cgo LDFLAGS: -L${SRCDIR}/libs -lbcm2835
+// #cgo CFLAGS: -I./libs/
+// #cgo LDFLAGS: -L./libs/ -lbcm2835
 // #include <rc522_public.h>
+import "C"
+
 import (
-  "C"
   "fmt"
   rfid "github.com/firmom/go-rfid-rc522"
 )

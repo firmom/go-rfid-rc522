@@ -1,4 +1,5 @@
-#ifdef __cplusplus
+
+#include "bcm2835.h"
 
 #define DEFAULT_SPI_SPEED 5000L
 
@@ -18,8 +19,8 @@ struct CardIdResult {
 #ifdef __cplusplus
 extern "C" {
 #endif
-    uint8_t InitRC522RfidReader(void)
-    CardIdResult ReadIdByRC522()
+    uint8_t InitRC522RfidReader(void);
+    struct CardIdResult ReadIdByRC522();
 #ifdef __cplusplus
 }
 #endif
