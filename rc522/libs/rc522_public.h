@@ -13,7 +13,7 @@
 struct CardIdResult {
     int status;
     int errorCode;
-    char rfidChipSerialNumber[23];
+    char id[23];
 };
 
 #ifdef __cplusplus

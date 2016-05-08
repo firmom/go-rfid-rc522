@@ -1,35 +1,16 @@
-#include <cstdlib>
-#include <stdio.h>
-#include <unistd.h>
-#include "rfid.h"
-#include "rc522.h"
 #include "bcm2835.h"
 #include "rc522_public.h"
+#include "rfid.h"
+#include "rc522.h"
 
-
-/*int main(int argc, char** argv) {
-    initRfidReader();
-
-
-
-    for (;;) {
-        CardIdResult result = readCardId();
-        if(result.errorCode == TAG_STATUS)
-            printf("status: %d \nerror: %d\nid: %s\n", result.status, result.errorCode, result.id);
-    }
-
-    bcm2835_spi_end();
-    bcm2835_close();
-}*/
-
-CardIdResult ReadIdByRC522() {
+struct CardIdResult ReadIdByRC522() {
     char statusRfidReader;
     uint16_t CType = 0;
     uint8_t serialNumber[11];
     uint8_t serialNumberLength = 0;
     char *p;
     int loopCounter;
-    CardIdResult result;
+    struct CardIdResult result;
 
     statusRfidReader = find_tag(&CType);
     if (statusRfidReader == TAG_NOTAG) {
