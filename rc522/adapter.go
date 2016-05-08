@@ -20,7 +20,7 @@ func NewRfidReader() (rfid.RfidReader, error) {
   if instance == nil {
     errCode, err := C.InitRC522RfidReader()
     if err != nil {
-      return err
+      return err, nil
     }
     if errCode != 0 {
       return nil, fmt.Errorf("Init rc522 fail with code: ", errCode)
@@ -33,13 +33,13 @@ func NewRfidReader() (rfid.RfidReader, error) {
 func (r RfidReader) ReadId() (string, error) {
   response, err := C.ReadIdByRC522()
   if err != nil {
-    return err
+    return err, nil
   }
   if response.errorCode != C.NO_ERROR {
-    return "", fmt.Errorf("Read rc522 fail with code: ", errCode)
+    return "", fmt.Errorf("Read rc522 fail with code: ", response.errorCode)
   }
   if response.status != C.NO_TAG_STATUS {
     return "", nil
   }
-  return C.GoString(response.id), nil
+  return C.GoString(&response.id), nil
 }
