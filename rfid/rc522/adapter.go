@@ -7,7 +7,7 @@ import "C"
 
 import (
   "fmt"
-  rfid "github.com/firmom/go-rfid-rc522"
+  rfid "github.com/firmom/go-rfid-rc522/rfid"
 )
 
 var (
