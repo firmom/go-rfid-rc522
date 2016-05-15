@@ -17,5 +17,13 @@ func NewReducer(reader RfidReader) (RfidReader, error) {
 }
 
 func (r *Reducer) ReadId() (string, error) {
-	id := r.reader.ReadId()
+	id, err := rfid.ReadId()
+	if err != nil {
+		return id, err
+	}
+	if id == r.oldvalue {
+		return id, fmt.Errorf("RFID: duplicate id echo")
+	}
+	r.oldvalue = id
+	return id, err
 }
