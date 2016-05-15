@@ -17,8 +17,9 @@ func NewReducer(reader RfidReader) (RfidReader, error) {
 }
 
 func (r *Reducer) ReadId() (string, error) {
-	id, err := rfid.ReadId()
+	id, err := r.reader.ReadId()
 	if err != nil {
+		r.oldvalue = ""
 		return id, err
 	}
 	if id == r.oldvalue {
