@@ -8,11 +8,14 @@ import (
 func main()  {
   rfid, err := rc522.NewRfidReader()
   if err != nil {
-    fmt.Errorf(err)
+    fmt.Println(err)
     return
   }
   for {
-    id := ReadId()
+    id, err := rfid.ReadId()
+    if err != nil {
+      continue
+    }
     fmt.Println(id)
   }
 }

@@ -7,7 +7,7 @@ import "C"
 
 import (
   "fmt"
-  rfid "github.com/firmom/go-rfid-rc522/rfid"
+  rfid "github.com/firmom/go-rfid-rc522"
 )
 
 var (
@@ -37,6 +37,9 @@ func (r RfidReader) ReadId() (string, error) {
   }
   if response.errorCode != C.NO_ERROR {
     return "", fmt.Errorf("Read rc522 fail with code: ", response.errorCode)
+  }
+  if response.status != C.NO_TAG_STATUS {
+    return "", nil
   }
   return C.GoString(&response.id[0]), nil
 }
