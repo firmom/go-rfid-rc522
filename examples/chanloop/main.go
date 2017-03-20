@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"time"
+
 	rfid "github.com/firmom/go-rfid-rc522/rfid"
 	rc522 "github.com/firmom/go-rfid-rc522/rfid/rc522"
 )
@@ -18,16 +19,16 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-  rfidChan := readerChan.GetChan()
-  doSomethingCount := 0
+	rfidChan := readerChan.GetChan()
+	doSomethingCount := 0
 	for {
-    select {
-    case id := <- rfidChan:
-      fmt.Println(id)
-    default:
-      doSomethingCount++
-      fmt.Println(" ... ", doSomethingCount)
-      time.Sleep(1000 * time.Millisecond)
-    }
+		select {
+		case id := <-rfidChan:
+			fmt.Println(id)
+		default:
+			doSomethingCount++
+			fmt.Println(" ... ", doSomethingCount)
+			time.Sleep(1000 * time.Millisecond)
+		}
 	}
 }
