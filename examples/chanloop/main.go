@@ -18,16 +18,16 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-  rfidChan := readerChan.getChan()
+  rfidChan := readerChan.GetChan()
   doSomethingCount := 0
 	for {
     select {
-    case id<-rfidChan:
+    case id := <- rfidChan:
       fmt.Println(id)
     default:
       doSomethingCount++
       fmt.Println(" ... ", doSomethingCount)
-      time.Sleep(50 * time.Millisecond)
+      time.Sleep(1000 * time.Millisecond)
     }
 	}
 }
